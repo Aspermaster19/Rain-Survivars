@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AguaAlerta Guayaquil</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/interfaz.css">
+<link rel="stylesheet" href="css/pines.css">
+<link rel="stylesheet" href="css/modal-reporte.css">
+<link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+<div id="app">
+  <div id="map"></div>
+
+  <div class="top">
+    <div class="brand"><div class="drop"></div><div><b>AguaAlerta</b><small>Guayaquil · en vivo</small></div></div>
+    <div class="rain"><div class="n">42 mm</div><small>última hora</small></div>
+  </div>
+  <div class="alert"><i></i><span><b>Alerta amarilla:</b> lluvia intensa en las próximas 2 horas</span></div>
+
+  <div class="legend">
+    <div><span style="background:var(--amber)"></span>Bordillo</div>
+    <div><span style="background:#f07c2a"></span>Rodilla</div>
+    <div><span style="background:var(--red)"></span>Cubre llantas</div>
+  </div>
+
+  <button class="fab" id="btnRoute">🧭 Sugerir ruta segura</button>
+  <button class="fab" id="btnReport"><span>⚠️</span> Reportar</button>
+  <button class="fab" id="btnChat" aria-label="Asistente de emergencia">💬</button>
+
+  <div class="sheet-bg" id="bg"></div>
+  <section class="sheet" id="sheet">
+    <div class="grip"></div>
+    <h2>Reportar inundación</h2>
+    <p class="sub">Tu reporte alerta a otros conductores y peatones.</p>
+    <p class="where">📍 Ubicación: Av. Francisco de Orellana (tu posición)</p>
+    <div class="lvl">
+      <div class="gauge" id="gauge">
+        <div class="car">🚗</div>
+        <div class="mark" style="bottom:25%"></div><div class="mark" style="bottom:50%"></div><div class="mark" style="bottom:75%"></div>
+        <div class="w" id="water"></div>
+      </div>
+      <div class="txt"><b id="lvlName">Nivel del bordillo</b><span id="lvlDesc">Se puede caminar con cuidado.</span></div>
+    </div>
+    <input type="range" id="level" min="1" max="3" step="1" value="1" aria-label="Nivel del agua">
+    <div class="ticks"><span>Bordillo</span><span>Rodilla</span><span>Cubre llantas</span></div>
+    <button class="photo" id="photoBtn"><span>📷</span><span id="photoTxt">Subir foto del sector</span></button>
+    <button class="send" id="send">Enviar reporte</button>
+  </section>
+
+  <section class="chat" id="chat">
+    <header>
+      <div class="av">🤖</div>
+      <div><b>Asistente de emergencia</b><small>● En línea · respuestas al instante</small></div>
+      <button id="closeChat" aria-label="Cerrar">✕</button>
+    </header>
+    <div id="msgs"></div>
+    <div class="quick" id="quick">
+      <button data-q="casa">El agua está entrando a mi casa</button>
+      <button data-q="auto">Mi auto se apagó en el agua</button>
+      <button data-q="calle">¿Puedo cruzar esta calle?</button>
+    </div>
+  </section>
+  <div class="toast" id="toast"></div>
+</div>
+
+<!-- El orden importa: cada archivo usa lo definido en los anteriores -->
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/map.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/route.js"></script>
+<script src="js/report-modal.js"></script>
+<script src="js/chat.js"></script>
+</body>
+</html>
